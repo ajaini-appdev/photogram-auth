@@ -12,7 +12,7 @@
 class Like < ApplicationRecord
     validates :user_id, presence: true
     validates :user_id, uniqueness: { 
-        scope: photo_id,
+        scope: :photo_id,
         message: "should be unique with respect to photo"
     }
     

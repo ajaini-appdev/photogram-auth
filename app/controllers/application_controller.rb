@@ -24,4 +24,5 @@ class ApplicationController < ActionController::Base
 
     devise_parameter_sanitizer.permit(:account_update, :keys => [ :username])
   end
+  before_action :authenticate_user!
 end
