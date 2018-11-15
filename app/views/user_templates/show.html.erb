@@ -2,17 +2,16 @@
 <div class="col-md-8 offset-md-2"><a href="photos/new" class="btn btn-primary btn-block">Add Photo</a></div>
 
 <div class="card col-md-8 offset-md-2">
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <img class="card-img-top" src=".../100px180/?text=Image cap" alt="Card image cap">
-  </div>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item">Cras justo odio</li>
-    <li class="list-group-item">Dapibus ac facilisis in</li>
-    <li class="list-group-item">Vestibulum at eros</li>
-  </ul>
-  <div class="card-body">
-    <a href="#" class="card-link">Card link</a>
-    <a href="#" class="card-link">Another link</a>
+    <div class="card-header">
+        <a href="/users/<%=@user.id%>"><%=@user.username%></a> <%=time_ago_in_words(@user.created_at)%>
+    </div>
+    <%@user.photos.each do |photo|%>
+    <div class="card-body"></div>
+    <a href="/photos/<%=photo.id%>"><img src="<%=photo.image%>" class="img-fluid"></a> 
+    <h5 class="card-title">Special title treatment</h5>
+    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+    <a href="/photos/<%=photo.id%>/edit" class="btn btn-warning w-100">Edit</a>
+    <a href="delete_photo/<%=photo.id%>" class="btn btn-danger w-100">Delete</a>
+    <%end%>
   </div>
 </div>
