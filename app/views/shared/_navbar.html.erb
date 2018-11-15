@@ -18,15 +18,19 @@
             <a href="/users" class="dropdown-item">
               Users
             </a>
-            <a href="/comments" class="dropdown-item">
-              Comments
-            </a>
-            <a href="/likes" class="dropdown-item">
-              Likes
-            </a>
+            
             <a href="/photos" class="dropdown-item">
               Photos
             </a>
+            
+            <a href="/likes" class="dropdown-item">
+              Likes
+            </a>
+            <% if current_user!= nil%>
+            <a href="/users/<%=current_user.id%>" class="dropdown-item">
+              My Wall
+            </a>
+            <%end%>
           </div>
         </li>
       </ul>
