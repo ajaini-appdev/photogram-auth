@@ -4,13 +4,51 @@
     </div>
     <div class="card-body"></div>
     <a href="/photos/<%=@photo.id%>"><img src="<%=@photo.image%>" class="img-fluid"></a> 
+    
+    <%@photo.comments.each do |comment|%>
+    <ul class="list-unstyled pt-3">
+      <li class="media mb-2">
+        <div class="media-body">
+          <a href="/users/<%=comment.user_id%>"><%=User.find(comment.user_id).username%></a> <small><%=time_ago_in_words(comment.created_at)%> ago</small>
+          <div><%=comment.body%></div>
+        </div>
+      </li>
+    </ul>
+    <%end%>
+    
+    <form action="/create_comment" method="post">
+
+   <!--hidden input for photo id-->
+    <input type="hidden" name="photo_id" value="<%=@photo.id%>">
+
+  <!--text area for comment body-->
+  <div class="form-group">
+    <label for="body" class="sr-only">
+      Body
+    </label>
+    
+    <div class="input-group">
+      <textarea name="body" id="body" class="form-control" placeholder="Add comment..."></textarea>
+      <span class="input-group-append">
+        <button class="btn btn-primary">
+          Create comment
+        </button>
+      </span>
+    </div>
+  </div>
+
+  <!--hidden input for user_id-->
+
+    <input type="hidden" name="user_id" value="<%=@photo.user_id%>">
+
+</form>
+    
     <%if @photo.user_id==current_user.id%>
       <a href="/photos/<%=@photo.id%>/edit" class="btn btn-warning w-100">Edit</a>
       <a href="delete_photo/<%=@photo.id%>" class="btn btn-danger w-100">Delete</a>
     <%end%>  
   </div>
 </div>
-
 
 
   <div class="col-md-8 offset-md-2">
