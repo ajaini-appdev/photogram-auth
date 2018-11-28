@@ -12,72 +12,17 @@
 
 <hr>
 
-
-
-<div class="row mb-3">
-  <div class="col-md-12">
-    <table class="table">
-      <tr>
-        <th>
-          ID
-        </th>
-
-        <th>
-          Caption
-        </th>
-
-        <th>
-          Image
-        </th>
-
-        <th>
-          User
-        </th>
-
-        <th>
-          Created at
-        </th>
-
-        <th>
-          Updated at
-        </th>
-
-        <th>
-        </th>
-      </tr>
-
-      <% @photos.each do |photo| %>
-      <tr>
-        <td>
-          <%= photo.id %>
-        </td>
-
-        <td>
-          <%= photo.caption %>
-        </td>
-
-        <td>
-          <%= photo.image %>
-        </td>
-
-        <td>
-          <%= photo.user_id %>
-        </td>
-
-        <td>
-          <%= time_ago_in_words(photo.created_at) %> ago
-        </td>
-        <td>
-          <%= time_ago_in_words(photo.updated_at) %> ago
-        </td>
-
-        <td>
-          <a href="/photos/<%= photo.id %>">
-            Show details
-          </a>
-        </td>
-      </tr>
-      <% end %>
-    </table>
+<% @photos.each do |photo| %>
+<div class="card col-md-8 offset-md-2 mb-4">
+    <div class="card-header">
+        <a href="/users/<%=Photo.find(photo.user_id)%>"><%=User.find(Photo.find(photo.user_id)).username%></a> <%=time_ago_in_words(photo.created_at)%>
+    </div>
+    <div class="card-body"></div>
+    <a href="/photos/<%=photo.id%>"><img src="<%=photo.image%>" class="img-fluid"></a> 
+    <%if photo.user_id==current_user.id%>
+      <a href="/photos/<%=photo.id%>/edit" class="btn btn-warning w-100">Edit</a>
+      <a href="delete_photo/<%=photo.id%>" class="btn btn-danger w-100">Delete</a>
+    <%end%>  
   </div>
 </div>
+<%end%>
