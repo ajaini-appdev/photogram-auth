@@ -47,7 +47,7 @@ class LikesController < ApplicationController
     if @like.valid?
       @like.save
 
-      redirect_to("/likes/#{@like.id}", :notice => "Like updated successfully.")
+      redirect_to("/my_likes/#{@like.id}", :notice => "Like updated successfully.")
     else
       render("like_templates/edit_form_with_errors.html.erb")
     end
@@ -58,6 +58,6 @@ class LikesController < ApplicationController
 
     @like.destroy
 
-    redirect_to("/likes", :notice => "Like deleted successfully.")
+    redirect_to("/photos", :notice => "Like deleted successfully.")
   end
 end

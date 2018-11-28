@@ -16,6 +16,7 @@
     <div class="card-header">
     <a href="/users/<%=Photo.find(like.photo_id).user_id%>"><%=User.find(Photo.find(like.photo_id).user_id).username%></a> <%=time_ago_in_words(like.created_at)%>
     </div>
+    <div><%=Photo.find(like.photo_id).caption%></div>
     
     <div class="card-body"></div>
     <a href="/photos/<%=like.photo_id%>"><img src="<%=Photo.find(like.photo_id).image%>" class="img-fluid"></a> 

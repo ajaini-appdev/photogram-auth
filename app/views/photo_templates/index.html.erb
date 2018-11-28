@@ -5,7 +5,7 @@
     </h1>
 
     <a href="/photos/new" class="btn btn-block btn-primary">
-      Add photo
+      Add Photo
     </a>
   </div>
 </div>
@@ -19,6 +19,31 @@
     </div>
     <div class="card-body">
     <a href="/photos/<%=photo.id%>"><img src="<%=photo.image%>" class="img-fluid"></a> 
+    
+    <div>
+      
+      <% a=Like.find_by(photo_id: photo.id, user_id: current_user.id) %>
+        <%if a!=nil%>
+          <a href="/delete_like/<%= a.id %>" class="btn btn-link">
+            Unlike
+          </a>
+        
+        <%else%>
+            <form action="/create_like" method="post">
+          
+           <!--hidden label for user id-->
+              <input type="hidden" name="user_id" value="<%=photo.user_id%>">
+      
+           <!--hidden label for photo id-->
+              <input type="hidden" name="photo_id" value="<%=photo.id%>">
+        
+              <button class="btn btn-link">
+               Like
+              </button>
+            </form>
+    
+        <%end%>
+    </div>
     
     <%photo.comments.each do |comment|%>
     <ul class="list-unstyled pt-3">
@@ -43,10 +68,10 @@
     </label>
     
     <div class="input-group">
-      <textarea name="body" id="body" class="form-control" placeholder="Add comment..."></textarea>
+      <textarea name="body" id="body" class="form-control" placeholder="Add a comment..."></textarea>
       <span class="input-group-append">
         <button class="btn btn-primary">
-          Create comment
+          Add Comment
         </button>
       </span>
     </div>
