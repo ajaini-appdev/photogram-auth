@@ -68,7 +68,7 @@
     </label>
     
     <div class="input-group">
-      <textarea name="body" id="body" class="form-control" placeholder="Add a comment..."></textarea>
+      <input type="text" name="body" id="body" class="form-control" placeholder='Add a comment...'>
       <span class="input-group-append">
         <button class="btn btn-primary">
           Add Comment
@@ -85,7 +85,7 @@
     
     <%if photo.user_id==current_user.id%>
       <a href="/photos/<%=photo.id%>/edit" class="btn btn-warning w-100">Edit</a>
-      <a href="delete_photo/<%=photo.id%>" class="btn btn-danger w-100">Delete</a>
+      <a href="/delete_photo/<%=photo.id%>" class="btn btn-danger w-100">Delete</a>
     <%end%>  
   </div>
 </div>

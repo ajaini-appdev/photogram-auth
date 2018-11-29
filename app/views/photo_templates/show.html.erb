@@ -44,8 +44,8 @@
 </form>
     
     <%if @photo.user_id==current_user.id%>
-      <a href="/photos/<%=@photo.id%>/edit" class="btn btn-warning w-100">Edit</a>
-      <a href="delete_photo/<%=@photo.id%>" class="btn btn-danger w-100">Delete</a>
+      <a href="/photos/<%=@photo.id%>/edit" class="btn btn-warning">Edit</a>
+      <a href="delete_photo/<%=@photo.id%>" class="btn btn-danger ">Delete</a>
     <%end%>  
   </div>
 </div>
